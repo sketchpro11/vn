@@ -1,0 +1,97 @@
+/* Completely hide "Focus Lock" text and any browser-generated accessibility text */
+.dock-button:focus::before,
+.dock-button:active::before,
+.dock-button:focus-visible::before {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+.dock-button:focus::after,
+.dock-button:active::after,
+.dock-button:focus-visible::after {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide any potential "Focus Lock" text from browser accessibility features */
+.dock-button:focus,
+.dock-button:active,
+.dock-button:focus-visible {
+  position: relative;
+}
+
+/* Additional rule to completely hide any browser-generated text */
+.dock-button:focus::before,
+.dock-button:active::before,
+.dock-button:focus-visible::before {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Hide any browser-generated "Focus Lock" text */
+.dock-button:focus::before,
+.dock-button:active::before,
+.dock-button:focus-visible::before {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide any potential browser-generated content */
+.dock-button:focus::after,
+.dock-button:active::after,
+.dock-button:focus-visible::after {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Additional rules to prevent any unwanted text */
+.dock-button:focus,
+.dock-button:active,
+.dock-button:focus-visible {
+  position: relative;
+}
+
+/* Hide any browser-generated "Focus Lock" text */
+.dock-button:focus::before,
+.dock-button:active::before,
+.dock-button:focus-visible::before {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+

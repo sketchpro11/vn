@@ -1,0 +1,97 @@
+.animated-theme-toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-track {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.toggle-thumb {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.toggle-thumb svg {
+  color: var(--bg-primary);
+}
+
+/* Stars for dark mode */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.star-1 {
+  top: 6px;
+  left: 8px;
+}
+
+.star-2 {
+  top: 12px;
+  left: 6px;
+  width: 1.5px;
+  height: 1.5px;
+}
+
+.star-3 {
+  top: 8px;
+  left: 12px;
+  width: 1px;
+  height: 1px;
+}
+
+/* Clouds for light mode */
+.cloud {
+  position: absolute;
+  background-color: #d4d4d4;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.cloud-1 {
+  width: 8px;
+  height: 4px;
+  top: 8px;
+  right: 8px;
+  border-radius: 4px;
+}
+
+.cloud-2 {
+  width: 6px;
+  height: 3px;
+  top: 14px;
+  right: 12px;
+  border-radius: 3px;
+}
+
+/* Hover effect */
+.animated-theme-toggle:hover .toggle-thumb {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}

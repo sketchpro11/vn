@@ -1,0 +1,120 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  height: 3.25rem;
+  padding: 0 2rem;
+}
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn svg {
+  pointer-events: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Variants */
+.btn-default {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-default:hover {
+  opacity: 0.9;
+}
+
+.btn-neutral {
+  background-color: #171717;
+  color: #fafafa;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-neutral:hover {
+  background-color: #0a0a0a;
+}
+
+.btn-outline {
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Responsive Sizes */
+/* Mobile First (default) - below 640px */
+@media (max-width: 480px) {
+  .btn {
+    height: 3rem;
+    padding: 0 1.75rem;
+    font-size: 0.9375rem;
+  }
+
+  .btn svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+/* Small tablets and larger phones (640px+) */
+@media (min-width: 640px) {
+  .btn {
+    height: 3.5rem;
+    padding: 0 2.5rem;
+    font-size: 1.0625rem;
+  }
+
+  .btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* Tablets (768px+) */
+@media (min-width: 768px) {
+  .btn {
+    height: 3.5rem;
+    padding: 0 2.5rem;
+    font-size: 1.0625rem;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .btn {
+    height: 3.75rem;
+    padding: 0 3rem;
+    font-size: 1.125rem;
+  }
+  
+  .btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* Large Desktop (1280px+) */
+@media (min-width: 1280px) {
+  .btn {
+    height: 3.75rem;
+    padding: 0 3rem;
+    font-size: 1.125rem;
+  }
+}

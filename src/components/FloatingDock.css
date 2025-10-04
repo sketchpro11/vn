@@ -1,0 +1,610 @@
+.floating-dock-wrapper {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  padding-top: 4rem;
+  overflow: visible;
+}
+
+.floating-dock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+              0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: visible;
+  position: relative;
+}
+
+.dock-item-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* React-based tooltip for mobile */
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 1001;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+[data-theme="dark"] .dock-tooltip {
+  background: rgba(255, 255, 255, 0.95);
+  color: #09090b;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tooltip-arrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="dark"] .tooltip-arrow {
+  border-top-color: rgba(255, 255, 255, 0.95);
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.dock-button.active {
+  background: rgba(52, 77, 236, 0.1);
+  color: #344DEC;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(52, 77, 236, 0.15);
+}
+
+[data-theme="dark"] .dock-button.active {
+  background: rgba(52, 77, 236, 0.15);
+  box-shadow: 0 8px 16px rgba(52, 77, 236, 0.2);
+}
+
+[data-theme="dark"] .floating-dock {
+  background: rgba(23, 23, 23, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+              0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dock-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+[data-theme="dark"] .dock-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dock-button::before {
+  content: attr(title);
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 0.5rem 0.875rem;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+/* Ensure no unwanted text appears */
+.dock-button {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.dock-button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.dock-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide any browser accessibility text */
+.dock-button[aria-label]:after {
+  content: none !important;
+}
+
+/* Hide any potential browser-generated text */
+.dock-button::before {
+  content: attr(title) !important;
+}
+
+/* Completely hide any browser focus lock text */
+.dock-button:focus::before,
+.dock-button:active::before,
+.dock-button:focus-visible::before {
+  content: attr(title) !important;
+}
+
+/* Hide any text that might appear from browser accessibility features */
+.dock-button:focus::after,
+.dock-button:active::after,
+.dock-button:focus-visible::after {
+  content: '' !important;
+}
+
+/* Additional rules to prevent any unwanted text */
+.dock-button * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide any potential browser-generated content */
+.dock-button:before {
+  content: attr(title) !important;
+}
+
+/* Ensure no other pseudo-elements show unwanted text */
+.dock-button:after {
+  content: '' !important;
+}
+
+/* Additional rules to prevent unwanted text */
+.dock-button * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide any potential browser focus indicators */
+.dock-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Prevent any text from appearing on focus */
+.dock-button:focus::before {
+  content: attr(title) !important;
+}
+
+/* Ensure no other pseudo-elements show unwanted text */
+.dock-button::before {
+  content: attr(title) !important;
+}
+
+[data-theme="dark"] .dock-button::before {
+  background: rgba(255, 255, 255, 0.95);
+  color: #09090b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dock-button::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+[data-theme="dark"] .dock-button::after {
+  border-top-color: rgba(255, 255, 255, 0.95);
+}
+
+.dock-button:hover::before,
+.dock-button:focus::before,
+.dock-button:active::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dock-button:hover::after,
+.dock-button:focus::after,
+.dock-button:active::after {
+  opacity: 1;
+}
+
+.dock-button:hover {
+  background: rgba(52, 77, 236, 0.1);
+  color: #344DEC;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(52, 77, 236, 0.15);
+}
+
+[data-theme="dark"] .dock-button:hover {
+  background: rgba(52, 77, 236, 0.15);
+  box-shadow: 0 8px 16px rgba(52, 77, 236, 0.2);
+}
+
+.dock-button:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Touch device support - hide tooltips on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .dock-button:active::before,
+  .dock-button:focus::before {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(4px) !important;
+  }
+
+  .dock-button:active::after,
+  .dock-button:focus::after {
+    opacity: 0 !important;
+  }
+  
+  /* Hide React tooltips on touch devices */
+  .dock-tooltip {
+    display: none !important;
+  }
+}
+
+/* Responsive */
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .floating-dock-wrapper {
+    bottom: 1.75rem;
+  }
+
+  .floating-dock {
+    gap: 0.625rem;
+    padding: 0.6875rem;
+  }
+
+  .dock-button {
+    width: 46px;
+    height: 46px;
+  }
+
+  .dock-button svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .dock-button::before {
+    font-size: 0.8125rem;
+    padding: 0.4375rem 0.8125rem;
+    bottom: calc(100% + 10px);
+  }
+
+  .dock-button::after {
+    bottom: calc(100% + 3px);
+  }
+}
+
+/* Mobile (below 768px) */
+@media (max-width: 768px) {
+  .floating-dock-wrapper {
+    bottom: 1.5rem;
+    padding-top: 5rem;
+  }
+
+  .floating-dock {
+    gap: 0.5rem;
+    padding: 0.625rem;
+    border-radius: 1.75rem;
+  }
+
+  .dock-tooltip {
+    font-size: 0.9375rem;
+    padding: 0.625rem 1rem;
+    bottom: calc(100% + 18px);
+  }
+}
+
+/* Mobile (below 768px) - Additional styles */
+@media (max-width: 768px) {
+  .dock-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .dock-button svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .dock-button::before {
+    font-size: 0.9375rem;
+    padding: 0.625rem 1rem;
+    bottom: calc(100% + 18px);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  [data-theme="dark"] .dock-button::before {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dock-button::after {
+    bottom: calc(100% + 8px);
+    border-left-width: 7px;
+    border-right-width: 7px;
+    border-top-width: 7px;
+  }
+
+  /* Ensure tooltips show on tap for mobile */
+  .dock-button:active::before,
+  .dock-button:focus-visible::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .dock-button:active::after,
+  .dock-button:focus-visible::after {
+    opacity: 1;
+  }
+}
+
+/* Small Mobile (below 480px) */
+@media (max-width: 480px) {
+  .floating-dock-wrapper {
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    transform: none;
+    padding: 0 0.5rem;
+    padding-top: 5.5rem;
+  }
+
+  .floating-dock {
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 100%;
+    gap: 0.4375rem;
+    padding: 0.5625rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+    border-radius: 1.5rem;
+    -ms-overflow-style: none;
+  }
+
+  .dock-tooltip {
+    font-size: 0.875rem;
+    padding: 0.5625rem 0.875rem;
+    bottom: calc(100% + 16px);
+  }
+}
+
+  .floating-dock::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dock-button {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+
+  .dock-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .dock-button::before {
+    font-size: 0.875rem;
+    padding: 0.5625rem 0.875rem;
+    bottom: calc(100% + 16px);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    min-width: max-content;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  [data-theme="dark"] .dock-button::before {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dock-button::after {
+    bottom: calc(100% + 6px);
+    border-left-width: 7px;
+    border-right-width: 7px;
+    border-top-width: 7px;
+  }
+
+  .dock-button:hover {
+    transform: translateY(-3px) scale(1.03);
+  }
+
+  /* Show tooltips on tap/active state */
+  .dock-button:active::before,
+  .dock-button:focus-visible::before {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+  }
+
+  .dock-button:active::after,
+  .dock-button:focus-visible::after {
+    opacity: 1 !important;
+  }
+}
+
+/* Extra Small Mobile (below 375px) */
+@media (max-width: 375px) {
+  .floating-dock-wrapper {
+    bottom: 0.875rem;
+    padding: 0 0.375rem;
+    padding-top: 6rem;
+  }
+
+  .floating-dock {
+    gap: 0.375rem;
+    padding: 0.5rem;
+    border-radius: 1.25rem;
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+
+  .dock-tooltip {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.75rem;
+    bottom: calc(100% + 14px);
+  }
+}
+
+  .dock-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .dock-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .dock-button::before {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.75rem;
+    bottom: calc(100% + 14px);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    min-width: max-content;
+  }
+
+  [data-theme="dark"] .dock-button::before {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .dock-button::after {
+    bottom: calc(100% + 5px);
+    border-left-width: 6px;
+    border-right-width: 6px;
+    border-top-width: 6px;
+  }
+
+  /* Ensure tooltips visible on tap */
+  .dock-button:active::before,
+  .dock-button:focus-visible::before {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+  }
+
+  .dock-button:active::after,
+  .dock-button:focus-visible::after {
+    opacity: 1 !important;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .floating-dock-wrapper {
+    bottom: 0.75rem;
+  }
+
+  .floating-dock {
+    padding: 0.4375rem;
+    gap: 0.375rem;
+  }
+
+  .dock-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dock-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .dock-button::before {
+    font-size: 0.6875rem;
+    padding: 0.375rem 0.625rem;
+    bottom: calc(100% + 8px);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  [data-theme="dark"] .dock-button::before {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  }
+
+  .dock-button::after {
+    bottom: calc(100% + 2px);
+  }
+
+  /* Ensure tooltips visible on tap */
+  .dock-button:active::before,
+  .dock-button:focus-visible::before {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+  }
+
+  .dock-button:active::after,
+  .dock-button:focus-visible::after {
+    opacity: 1 !important;
+  }
+}
