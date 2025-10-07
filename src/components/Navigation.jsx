@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown, Github, Twitter, Linkedin, Zap, Shield, Users, Database, BarChart3, Link, ShoppingCart, Lock, Cpu, Globe } from 'lucide-react'
+import { Menu, X, ChevronDown, Github, Twitter, Linkedin, Zap, Shield, Users, Database, ChartBar as BarChart3, Link, ShoppingCart, Lock, Cpu, Globe } from 'lucide-react'
 import { SiTelegram, SiWhatsapp, SiDiscord } from 'react-icons/si'
 import { Drawer } from 'vaul'
 import { motion, AnimatePresence } from 'framer-motion'
