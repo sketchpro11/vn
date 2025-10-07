@@ -78,10 +78,6 @@
   position: relative;
 }
 
-.nav-wrapper-relative {
-  position: static;
-}
-
 .dropdown-trigger {
   display: flex;
   align-items: center;

@@ -550,8 +550,8 @@ const Navigation = () => {
               ))}
               
               {/* Products Mega Dropdown */}
-              <div 
-                className="nav-item-dropdown nav-wrapper-relative"
+              <div
+                className="nav-item-dropdown"
                 onMouseEnter={() => setIsProductsOpen(true)}
                 onMouseLeave={() => setIsProductsOpen(false)}
               >
