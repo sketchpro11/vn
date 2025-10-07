@@ -1,0 +1,323 @@
+/* Mega Dropdown Styles - Full Width Design */
+.mega-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 999;
+  margin-top: 8px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.dropdown-container {
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.dropdown-content {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Cards Grid - Three Product Cards Layout */
+.cards-grid {
+  display: flex;
+  gap: 16px;
+  flex: 3;
+  box-sizing: border-box;
+  padding: 20px;
+  min-width: 0;
+}
+
+/* Product Cards */
+.product-card {
+  flex: 1;
+  min-height: 180px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+}
+
+.product-card:hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  position: relative;
+}
+
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Company Sidebar */
+.company-sidebar {
+  flex: 1;
+  background: #f9fafb;
+  border-left: 1px solid #e5e7eb;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sidebar-item:hover {
+  color: #111827;
+}
+
+.sidebar-item svg {
+  color: #6b7280;
+}
+
+/* Products Grid - Single Row Layout */
+.products-grid {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.products-grid .card {
+  flex: 1.05;
+  min-width: 0;
+  height: 140px;
+}
+  flex: 1;
+  min-width: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  flex: 1 1 0;
+  min-height: 140px;
+  min-width: 0;
+  background-image: linear-gradient(to right, #f9fafb 1px, transparent 1px),
+                    linear-gradient(to bottom, #f9fafb 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: top left;
+}
+
+.product-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.product-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.product-info {
+  width: 100%;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* Company Sidebar */
+.company-sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  padding-left: 0;
+  border-left: 1px solid #f3f4f6;
+  padding-left: 20px;
+}
+
+.company-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+.company-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.company-link {
+  font-size: 14px;
+  color: #6b7280;
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.company-link:hover {
+  color: #374151;
+}
+
+.company-link::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: #d1d5db;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .mega-dropdown {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .product-card {
+  border-color: #374151;
+}
+
+[data-theme="dark"] .product-card:hover {
+  border-color: #4b5563;
+  background-color: #374151;
+}
+
+[data-theme="dark"] .product-icon {
+  background: #374151;
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .product-title {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .product-description {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .company-sidebar {
+  border-left-color: #374151;
+}
+
+[data-theme="dark"] .company-title {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .company-link {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .company-link:hover {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .company-link::before {
+  background: #6b7280;
+}
+
+/* Dark theme support for empty cards */
+[data-theme="dark"] .empty-card {
+  border-color: #374151;
+  background: #374151;
+  border-right: none;
+}
+
+[data-theme="dark"] .empty-card:last-child {
+  border-right: 1px solid #374151;
+}
+
+[data-theme="dark"] .empty-card:hover {
+  border-color: #4b5563;
+  background: #4b5563;
+}
+
+[data-theme="dark"] .card-content {
+  color: #9ca3af;
+}
+
+.nav-wrapper-relative {
+  position: static;
+}

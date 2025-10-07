@@ -1,11 +1,21 @@
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown, Github, Twitter, Linkedin } from 'lucide-react'
+import { Menu, X, ChevronDown, Github, Twitter, Linkedin, Zap, Shield, Users, Database, BarChart3, Link, ShoppingCart, Lock, Cpu, Globe } from 'lucide-react'
 import { SiTelegram, SiWhatsapp, SiDiscord } from 'react-icons/si'
 import { Drawer } from 'vaul'
 import { motion, AnimatePresence } from 'framer-motion'
 import AnimatedThemeToggler from './AnimatedThemeToggler'
 import AwardBadge from './AwardBadge'
+import { 
+  NavigationMenu, 
+  NavigationMenuList, 
+  NavigationMenuItem, 
+  NavigationMenuContent, 
+  NavigationMenuTrigger,
+  NavGridCard,
+  NavSmallItem
+} from './NavigationMenu'
 import './Navigation.css'
+import './MegaDropdown.css'
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -39,10 +49,92 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  // Product links for the new dropdown
+  const productLinks = [
+    {
+      title: 'Website Builder',
+      description: 'Create responsive websites with ease',
+      icon: Zap,
+      href: '#website-builder'
+    },
+    {
+      title: 'Cloud Platform',
+      description: 'Deploy and scale apps in the cloud',
+      icon: Shield,
+      href: '#cloud-platform'
+    },
+    {
+      title: 'Team Collaboration',
+      description: 'Tools to help your teams work better together',
+      icon: Users,
+      href: '#team-collaboration'
+    }
+  ]
+
+  // Company links for the sidebar
+  const companyLinks = [
+    {
+      title: 'Analytics',
+      description: 'Track your performance',
+      icon: BarChart3,
+      href: '#analytics'
+    },
+    {
+      title: 'Integrations',
+      description: 'Connect with other tools',
+      icon: Link,
+      href: '#integrations'
+    },
+    {
+      title: 'E-Commerce',
+      description: 'Sell products online',
+      icon: ShoppingCart,
+      href: '#ecommerce'
+    },
+    {
+      title: 'Security',
+      description: 'Keep your data safe',
+      icon: Lock,
+      href: '#security'
+    },
+    {
+      title: 'API',
+      description: 'Build with our API',
+      icon: Cpu,
+      href: '#api'
+    },
+    {
+      title: 'Database',
+      description: 'Store and manage data',
+      icon: Database,
+      href: '#database'
+    }
+  ]
+
   const products = [
-    { name: 'PC Products', icon: 'https://iili.io/KWATWb4.png' },
-    { name: 'iOS Products', icon: 'https://iili.io/KWARHlt.png' },
-    { name: 'Android Products', icon: 'https://iili.io/KWAuran.png' }
+    { 
+      name: 'Website Builder', 
+      description: 'Create responsive websites with ease',
+      icon: '🌐'
+    },
+    { 
+      name: 'Cloud Platform', 
+      description: 'Deploy and scale apps in the cloud',
+      icon: '☁️'
+    },
+    { 
+      name: 'Team Collaboration', 
+      description: 'Tools to help your teams work better together',
+      icon: '👥'
+    }
+  ]
+
+  const sidebarItems = [
+    { name: 'Analytics', icon: '📊' },
+    { name: 'Integrations', icon: '🔗' },
+    { name: 'E-Commerce', icon: '💰' },
+    { name: 'Security', icon: '🔒' },
+    { name: 'API', icon: '⚡' }
   ]
 
   const navLinks = [
@@ -381,21 +473,19 @@ const Navigation = () => {
                               className="drawer-dropdown-menu"
                                 ref={productsRef}
                             >
-                              {products.map((product, index) => (
+                              {productLinks.map((product, index) => (
                                 <a
                                   key={index}
-                                  href={product.disabled ? '#' : `#${product.name.toLowerCase().replace(' ', '-')}`}
-                                  className={`drawer-dropdown-item ${product.disabled ? 'disabled' : ''}`}
-                                  onClick={(e) => product.disabled && e.preventDefault()}
+                                  href={product.href}
+                                  className="drawer-dropdown-item"
                                 >
                                   <span className="item-icon">
-                                    {product.icon.startsWith('http') ? (
-                                      <img src={product.icon} alt={product.name} className="product-icon-image" />
-                                    ) : (
-                                      product.icon
-                                    )}
+                                    <product.icon size={20} />
                                   </span>
-                                  <span>{product.name}</span>
+                                  <div className="item-content">
+                                    <span className="item-title">{product.title}</span>
+                                    <span className="item-description">{product.description}</span>
+                                  </div>
                                 </a>
                               ))}
                             </motion.div>
@@ -461,53 +551,72 @@ const Navigation = () => {
               
               {/* Products Mega Dropdown */}
               <div 
-                className="nav-dropdown" 
-                ref={productsRef}
+                className="nav-item-dropdown nav-wrapper-relative"
                 onMouseEnter={() => setIsProductsOpen(true)}
                 onMouseLeave={() => setIsProductsOpen(false)}
               >
-                <div className="nav-item dropdown-trigger">
+                <button className="nav-item dropdown-trigger">
                   Products
-                  <ChevronDown 
-                    size={16} 
-                    className={`dropdown-icon ${isProductsOpen ? 'open' : ''}`}
-                  />
-                </div>
+                  <ChevronDown size={16} className={`dropdown-arrow ${isProductsOpen ? 'open' : ''}`} />
+                </button>
                 
                 <AnimatePresence>
                   {isProductsOpen && (
                     <motion.div
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="mega-dropdown-panel"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="mega-dropdown"
+                      ref={productsRef}
                     >
-                      <div className="mega-dropdown-content">
-                        <div className="mega-dropdown-header">
-                          <h3>Our Products</h3>
-                          <p>Explore our premium collection</p>
-                        </div>
-                        <div className="mega-dropdown-grid">
-                          {products.map((product, index) => (
-                            <a
-                              key={index}
-                              href={product.disabled ? '#' : `#${product.name.toLowerCase().replace(' ', '-')}`}
-                              className={`mega-dropdown-item ${product.disabled ? 'disabled' : ''}`}
-                              onClick={(e) => product.disabled && e.preventDefault()}
-                            >
-                              <div className="mega-item-icon">{product.icon}</div>
-                                  <div className="mega-item-content">
-                                    <h4>{product.name}</h4>
-                                    <p>{product.disabled ? 'Coming Soon' : 'Explore now'}</p>
-                                  </div>
-                            </a>
-                          ))}
-                        </div>
-                        <div className="mega-dropdown-footer">
-                          <a href="#all-products" className="mega-footer-link">
-                            View All Products →
-                          </a>
+                      <div className="dropdown-container">
+                        <div className="dropdown-content">
+                          <div className="cards-grid">
+                            <div className="product-card">
+                              <div className="card-icon">
+                                <Globe size={24} />
+                              </div>
+                              <h3 className="card-title">Website Builder</h3>
+                              <p className="card-description">Create responsive websites with ease</p>
+                            </div>
+                            <div className="product-card">
+                              <div className="card-icon">
+                                <Database size={24} />
+                              </div>
+                              <h3 className="card-title">Cloud Platform</h3>
+                              <p className="card-description">Deploy and scale apps in the cloud</p>
+                            </div>
+                            <div className="product-card">
+                              <div className="card-icon">
+                                <Users size={24} />
+                              </div>
+                              <h3 className="card-title">Team Collaboration</h3>
+                              <p className="card-description">Tools to help your teams work better together</p>
+                            </div>
+                          </div>
+                          <div className="company-sidebar">
+                            <div className="sidebar-item">
+                              <BarChart3 size={16} />
+                              <span>Analytics</span>
+                            </div>
+                            <div className="sidebar-item">
+                              <Link size={16} />
+                              <span>Integrations</span>
+                            </div>
+                            <div className="sidebar-item">
+                              <ShoppingCart size={16} />
+                              <span>E-Commerce</span>
+                            </div>
+                            <div className="sidebar-item">
+                              <Lock size={16} />
+                              <span>Security</span>
+                            </div>
+                            <div className="sidebar-item">
+                              <Cpu size={16} />
+                              <span>API</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </motion.div>
